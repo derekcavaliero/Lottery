@@ -1,0 +1,21 @@
+{
+  "name": "lotto",
+  "version": "1.0.0",
+  "description": "A Javascript utility class inspired by the Laravel Lottery facade.",
+  "main": "src/Lotto.js",
+  "jsdelivr": "dist/Lotto.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lottery",
+    "odds",
+    "google tag manager",
+    "data sampling"
+  ],
+  "author": "Derek Cavaliero <@derekcavaliero>",
+  "license": "MIT",
+  "devDependencies": {
+    "laravel-mix": "^6.0.49"
+  }
+}
