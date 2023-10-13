@@ -114,7 +114,9 @@ class Lotto {
    * @returns {string} The converted string.
    */ 
   static toSnakeCase(str) {
-    return str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
+    return str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+              .map(x => x.toLowerCase())
+              .join('_');
   }
 
   /**
@@ -124,7 +126,7 @@ class Lotto {
    * @returns {string} The name of the cookie.
    */ 
   static getCookieName(handle) {
-    return `__lotto_${Lotto.toSnakeCase(handle)}`;
+    return `_lotto_${Lotto.toSnakeCase(handle)}`;
   } 
 
   /**
@@ -135,7 +137,7 @@ class Lotto {
    */
   static getCookie(handle) {
 
-    name = `${this.getCookieName(handle)}=`;
+    let name = `${Lotto.getCookieName(handle)}=`;
     
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
@@ -155,7 +157,7 @@ class Lotto {
   }
   
   /**
-   * Sets the value of the lottery's cookie.
+   * Sets a `__lotto_[handle]` cookie to persist the result of a lottery.
    * 
    * @param {boolean} the result of the lottery.
    * @returns {void}
